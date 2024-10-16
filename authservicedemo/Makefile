@@ -1,4 +1,5 @@
-BINARY := authwebapp
+BINARY := webapp
+CONTAINER_NAME := authservicedemo
 REPO_NAME := quay.io/helioloureiro/proj_vas
 
 BUILD_OPTIONS = -modcacherw
@@ -18,7 +19,7 @@ check-race:
 
 container:
 	docker build \
-		-t $(REPO_NAME)/$(BINARY):latest \
+		-t $(REPO_NAME)/$(CONTAINER_NAME):latest \
 		--squash=true \
 		--force-rm=true \
 		--rm=true \
