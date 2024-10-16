@@ -1,4 +1,4 @@
-BINARY := webapp
+BINARY := authwebapp
 REPO_NAME := quay.io/helioloureiro/proj_vas
 
 BUILD_OPTIONS = -modcacherw
