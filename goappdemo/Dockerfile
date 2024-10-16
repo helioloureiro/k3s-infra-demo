@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-COPY authwebapp /usr/bin/webapp
+COPY webapp /usr/bin/webapp
 
 RUN ls -l /usr/bin/webapp \
     && chmod 0755 /usr/bin/webapp \
