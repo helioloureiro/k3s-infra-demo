@@ -64,7 +64,7 @@ func getFromDB() string {
 	username := os.Getenv("POSTGRES_USER")
 	password := os.Getenv("POSTGRES_PASSWORD")
 	server := os.Getenv("POSTGRES_SERVER")
-	connStr := fmt.Sprintf("postgresql://%s:%s@%s/todos?sslmode=disable",
+	connStr := fmt.Sprintf("postgresql://%s:%s@%s/postgres?sslmode=disable",
 		username,
 		password,
 		server)
