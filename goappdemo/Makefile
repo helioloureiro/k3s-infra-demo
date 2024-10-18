@@ -10,6 +10,8 @@ BUILD_OPTIONS += -ldflags="-s -w -X 'main.Version=$$(git rev-parse HEAD | cut -c
 ## this options requires CGO enabled
 BUILD_OPTIONS_RACE = -race
 
+all: $(BINARY) container push
+
 $(BINARY): check-race main.go go.mod
 	export CGO_ENABLED=0 && \
 		go build -o $(BINARY) $(BUILD_OPTIONS) .
@@ -26,7 +28,7 @@ container:
 		.
 
 push:
-	docker push $(REPO_NAME)/$(BINARY):latest
+	docker push $(REPO_NAME)/$(CONTAINER_NAME):latest
 
 clean:
 	rm -f $(BINARY)

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.goappdemo.name }}
-        image: quay.io/helioloureiro/proj_vas/webapp
+        image: quay.io/helioloureiro/proj_vas/goappdemo:latest
         # keep downloading since this is under development
         imagePullPolicy: "Always"
         securityContext:

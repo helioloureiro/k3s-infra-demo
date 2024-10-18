@@ -6,6 +6,7 @@ RUN ls -l /usr/bin/webapp \
     && chmod 0755 /usr/bin/webapp \
     && sha256sum /usr/bin/webapp
 
+## to confirm it is working with right version
 RUN /usr/bin/webapp --version
 
 EXPOSE 8080
