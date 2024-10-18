@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"strings"
 )
 
 var (
@@ -26,6 +28,11 @@ func main() {
 	}
 	fmt.Println("Using port:", port)
 	fmt.Println("Build nr:")
+	fmt.Println("Environment:")
+	for _, v := range os.Environ() {
+		data := strings.Split(v, "=")
+		fmt.Println(fmt.Sprintf(" * %s=%s", data[0], data[1]))
+	}
 
 	http.HandleFunc("/auth", authenticationAPI)
 	http.HandleFunc("/api", generalAPI)
@@ -35,6 +42,7 @@ func main() {
 func authenticationAPI(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Authentication connection from:", r.RemoteAddr)
 	w.Write(byteME("authentication API"))
+	//not authenticated right now
 }
 
 func generalAPI(w http.ResponseWriter, r *http.Request) {

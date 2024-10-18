@@ -1,0 +1,37 @@
+# Apache HTTP Server Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.goappdemo.name }}-deployment
+spec:
+  replicas: {{ .Values.goappdemo.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.goappdemo.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.goappdemo.name }}
+    spec:
+      containers:
+      - name: {{ .Values.goappdemo.name }}
+        image: quay.io/helioloureiro/proj_vas/webapp
+        # keep downloading since this is under development
+        imagePullPolicy: "Always"
+        securityContext:
+            runAsUser: 1000
+        env:
+          - name: POSTGRES_USER
+            value: "postgres"
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: postgresql-password
+          - name: POSTGRES_DB
+            value: "postgres"
+          - name: POSTGRES_SERVER
+            value: "postgres-svc"
+        ports:
+        # Container port where App listens
+        - containerPort: {{ .Values.goappdemo.service.port }}

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: {{ .Values.goappdemo.name }}
+  name: {{ .Values.goappdemo.name }}-service
+spec:
+  ports:
+    - name: http
+      port: {{ .Values.goappdemo.service.port }}
+      protocol: TCP
+      # Expose port 8080 on the service
+      targetPort: {{ .Values.goappdemo.service.port }}
+  selector:
+  # Link this service to pods with the label app=apache
+    app: {{ .Values.goappdemo.name }}
