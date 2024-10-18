@@ -20,16 +20,16 @@ spec:
             # ok to run as root
             runAsUser: 0
         env:
-          - name: POSTGRES_USER
+          - name: PGUSER
             value: "postgres"
-          - name: POSTGRES_PASSWORD
+          - name: PGPASSWORD
             valueFrom:
               secretKeyRef:
                 name: postgres-secrets
                 key: postgresql-password
-          - name: POSTGRES_DB
+          - name: PGDATABASE
             value: "postgres"
-          - name: POSTGRES_SERVER
+          - name: PGHOST
             value: "postgres-svc"
       containers:
       - name: {{ .Values.goappdemo.name }}
